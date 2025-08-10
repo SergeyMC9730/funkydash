@@ -417,7 +417,7 @@ namespace FDGlobal {
                 }
                 for (auto &[k, v] : players) {
                     if (polygonIntersectsCircle(v, {hazard->m_positionX, hazard->m_positionY}, radius)) {
-                        log::info("killed lol");
+                        // log::info("killed lol");
                         target->destroyPlayer(k, hazard);
                         return true;
                     }
@@ -527,7 +527,7 @@ private:
     std::vector<FMOD::Sound*> _loadedSounds = {};
 public:
     static FMOD_RESULT nonBlockCallback(FMOD_SOUND *a, FMOD_RESULT b) {
-        log::info("nonBlockCallback called");
+        // log::info("nonBlockCallback called");
 
         auto engine = FMODAudioEngine::get();
         auto system = engine->m_system;
@@ -559,7 +559,7 @@ public:
         std::string fullpath = Mod::get()->getResourcesDir().string() + "/" + filePath;
         result = system->createStream(fullpath.c_str(), FMOD_DEFAULT | FMOD_LOOP_OFF | FMOD_2D | FMOD_LOWMEM, &exinfo, &sound);
 
-        log::info("{} {}", filePath, fullpath);
+        // log::info("{} {}", filePath, fullpath);
 
         if (result != FMOD_OK) {
             log::info("FMOD ERROR {}", (int)result);
@@ -781,8 +781,8 @@ class $modify(XPlayLayer, PlayLayer) {
         }
     }
     void destroyPlayer(PlayerObject *p0, GameObject *p1) {
-        log::info("{} {}", p0, p1);
-        FDGlobal::last_collided_obj = p1;
+        // log::info("{} {}", p0, p1);
+        // FDGlobal::last_collided_obj = p1;
         PlayLayer::destroyPlayer(p0, p1);
     }
 };
@@ -1008,10 +1008,10 @@ class $modify(XPlayerObject, PlayerObject) {
         }
 
         // FDGlobal::last_collided_obj = pl->m_player1->m_collidedObject;
-        log::info("{} {} {}", FDGlobal::last_collided_obj, shouldDestroyBlock, (int)FDGlobal::last_collided_obj->m_objectType);
-        if (shouldDestroyBlock && FDGlobal::last_collided_obj) {
-            fnRemoveObject(FDGlobal::last_collided_obj);
-        }
+        // log::info("{} {} {}", FDGlobal::last_collided_obj, shouldDestroyBlock, (int)FDGlobal::last_collided_obj->m_objectType);
+        // if (shouldDestroyBlock && FDGlobal::last_collided_obj) {
+            // fnRemoveObject(FDGlobal::last_collided_obj);
+        // }
     }
 
     void playerDestroyed(bool p0) {
