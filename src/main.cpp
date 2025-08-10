@@ -134,7 +134,7 @@ namespace FDGlobal {
                 const auto& p2 = polygon->points[i2];
 
                 // Calculate normal vector for the edge
-                CCPointD normal(p2.y - p1.y, p1.x - p2.x);
+                CCPointD normal = {p2.y - p1.y, p1.x - p2.x};
 
                 // Project polygon A points
                 std::optional<double> minA, maxA;
