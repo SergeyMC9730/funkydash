@@ -8,10 +8,10 @@
     },
     "id": "dogotrigger.funky_dash",
     "name": "Funky Dash",
-    "version": "v1.0.1",
+    "version": "v1.0.2",
     "developer": "dogotrigger",
     "description": "cool dash",
-    "tags": ["cheat", "fun", "offline", "gameplay"],
+    "tags": ["cheat", "joke", "offline", "gameplay"],
     "settings": {
         "hazard-title": {
             "type": "title",
