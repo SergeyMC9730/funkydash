@@ -1,0 +1,65 @@
+{
+    "geode": "4.6.1",
+    "gd": {
+        "win": "2.2074",
+        "android": "2.2074",
+        "mac": "2.2074",
+        "ios": "2.2074"
+    },
+    "id": "dogotrigger.funky_dash",
+    "name": "Funky Dash",
+    "version": "v1.0.0-beta.3",
+    "developer": "dogotrigger",
+    "description": "cool dash",
+    "tags": ["cheat", "fun", "offline", "gameplay"],
+    "settings": {
+        "hazard-title": {
+            "type": "title",
+            "name": "Hazards"
+        },
+        "remove-hazards": {
+            "name": "Randomly Remove Hazards",
+            "description": "Removes N number of visible hazards when player dies.",
+            "type": "bool",
+            "default": true
+        },
+        "hazard-amount": {
+            "name": "Hazards to Remove",
+            "description": "Maximum amount of hazards to be hidden. Only works when \"Randomly Remove Hazards\" is enabled.",
+            "type": "int",
+            "default": 1,
+            "min": 1
+        },
+        "rem-alg": {
+            "name": "Use Different Alghorithm",
+            "description": "Uses different alghorithm to search and remove hazards. Works more accurately but less visible to human eye.",
+            "type": "bool",
+            "default": true
+        },
+        "play-animation": {
+            "name": "Play Animation",
+            "description": "Plays small animation when hazards are disappearing.",
+            "type": "bool",
+            "default": true
+        },
+        "hitbox-title": {
+            "type": "title",
+            "name": "Hitboxes"
+        },
+        "enable-real-hitboxes": {
+            "name": "Enable Accurate Hitboxes",
+            "description": "Enables actual hitboxes for spikes and saws. Makes most levels impossible but in some cases could be a fun challenge.",
+            "type": "bool",
+            "default": true
+        },
+        "show-real-hitboxes": {
+            "name": "Show Accurate Hitboxes",
+            "description": "Makes real hitbox outlines visible in-game. Only works when \"Enable Real Hitboxes\" is enabled.",
+            "type": "bool",
+            "default": false
+        }
+    },
+    "resources": {
+        "files": ["assets/*.mp3", "assets/*.wav"]
+    }
+}
