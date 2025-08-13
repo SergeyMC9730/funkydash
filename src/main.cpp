@@ -18,7 +18,6 @@
 #include "Geode/cocos/draw_nodes/CCDrawNode.h"
 #include "Geode/cocos/particle_nodes/CCParticleSystemQuad.h"
 #include "Geode/loader/Log.hpp"
-#include "anim/renderer_keyframe.h"
 #include "ccTypes.h"
 #include "fmod.hpp"
 #include "fmod_common.h"
@@ -460,7 +459,7 @@ namespace FDGlobal {
             playerPolygons[p0] = playerPolygon;
         }
 
-        CCNode *bLayer = target->getChildByIDRecursive("batch-layer");
+        CCNode *bLayer = target->m_objectLayer;
         if (bLayer == nullptr) {
             log::error("cannot get batch-layer");
         } else {
@@ -508,7 +507,6 @@ namespace FDGlobal {
     }
 }
 
-#include "anim/renderer_animation.h"
 
 class DisappereanceEffectNode : public CCNode {
 private:
@@ -521,8 +519,6 @@ private:
     float _positionScaling = 50.f;
     std::function<void(void)> _onStageTwo = nullptr;
 
-    renderer_animation _timeAnimation = {};
-    std::vector<renderer_keyframe> _timeKeyframes = {};
 
     std::vector<FMOD::Sound*> _loadedSounds = {};
 public:
@@ -684,17 +680,6 @@ public:
 
         float initialTime = 0.231f;
         _mul = 1.0 / (double)initialTime;
-
-        // renderer_keyframe keyframe = {};
-        // keyframe.easing = TOInQuart;
-        // keyframe.ending_value = -_currentRadius;
-        // keyframe.length = initialTime;
-        // _timeKeyframes.push_back(keyframe);
-
-        // auto *anim = &_timeAnimation;
-        // anim->count = _timeKeyframes.size();
-        // anim->keyframes = _timeKeyframes.data();
-        // anim->starting_value = _currentRadius;
 
         for (auto &[k, v] : _elements) {
             k->setScale(0.75f);
@@ -1042,62 +1027,3 @@ class $modify(XPlayerObject, PlayerObject) {
     };
 };
 
-class $modify(EndLevelLayer) {
-    void customSetup() {
-        EndLevelLayer::customSetup();
-
-        return;
-
-        m_animateCoins = true;
-
-        CCSprite *coin = CCSprite::createWithSpriteFrameName("secretCoin_01_001.png");
-        m_mainLayer->addChild(coin);
-
-        if (m_coinsToAnimate == nullptr) {
-            log::warn("creating m_coinsToAnimate because it does not exist");
-            m_coinsToAnimate = CCArray::create();
-        }
-        m_coinsToAnimate->addObject(coin);
-
-    }
-};
-
-class $modify(EditorUI) {
-    bool onCreate() {
-        createUndoSelectObject(true);
-        onCreateObject(m_selectedObjectIndex);
-        // tryUpdateTimeMarkers(); // it's empty?
-        return true;
-    }
-};
-
-class $modify(XMenuLayer, MenuLayer) {
-    void onMyButton(CCObject *caller) {
-        DisappereanceEffectNode *node = DisappereanceEffectNode::create(nullptr, true);
-        CCDirector *d = CCDirector::get();
-        node->setPosition(d->getWinSize() / 2);
-
-        addChild(node);
-    }
-
-    bool init() {
-        if (!MenuLayer::init()) return false;
-
-        return true;
-
-        auto myButton = CCMenuItemSpriteExtra::create(
-			CCSprite::createWithSpriteFrameName("GJ_likeBtn_001.png"),
-			this,
-			menu_selector(XMenuLayer::onMyButton)
-		);
-
-		auto menu = this->getChildByID("bottom-menu");
-		menu->addChild(myButton);
-
-		myButton->setID("my-button"_spr);
-
-		menu->updateLayout();
-
-		return true;
-    }
-};
