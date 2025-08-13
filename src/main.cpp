@@ -811,7 +811,7 @@ class $modify(XPlayerObject, PlayerObject) {
     void applyAlg0() {
         PlayLayer *pl = PlayLayer::get();
 
-        CCNode *bLayer = pl->getChildByIDRecursive("batch-layer");
+        CCNode *bLayer = pl->m_objectLayer;
         if (bLayer == nullptr) {
             log::error("cannot get batch-layer");
             return;
@@ -908,7 +908,7 @@ class $modify(XPlayerObject, PlayerObject) {
     void applyAlg1() {
         PlayLayer *pl = PlayLayer::get();
 
-        CCNode *bLayer = pl->getChildByIDRecursive("batch-layer");
+        CCNode *bLayer = pl->m_objectLayer;
         if (bLayer == nullptr) {
             log::error("cannot get batch-layer");
             return;
